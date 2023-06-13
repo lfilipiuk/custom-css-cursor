@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cursors */
 .cursor {
   @apply fixed w-8 h-8 border-2 border-blue-600 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2;
 }
@@ -14,14 +15,16 @@
   @apply border border-black transition duration-500 ease-in-out;
 }
 
-.dot {
-  @apply absolute w-2 h-2 bg-black rounded-full transform -translate-x-1/2 -translate-y-1/2 border-none duration-300 ease-in-out;
-}
-
 .empty-circle {
   @apply fixed w-8 h-8 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2;
 }
 
+/* Dot styling */
+.dot {
+  @apply absolute w-2 h-2 bg-black rounded-full transform -translate-x-1/2 -translate-y-1/2 border-none duration-300 ease-in-out;
+}
+
+/* Enlarge animation */
 @keyframes enlarge {
   0% {
     transform: translate(-50%, -50%) scale(1) ;
@@ -42,6 +45,7 @@
   animation: enlarge 0.3s forwards;
 }
 
+/* Link hover animations */
 @keyframes link-hover {
   0% {
     transform: translate(-50%, -50%) scale(0.5);
@@ -58,6 +62,20 @@
   animation: link-hover 0.3s forwards;
 }
 
+@keyframes link-hover-follower {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.link-hovered-follower {
+  animation: link-hover-follower 0.3s forwards;
+}
+
+/* Link unhover animations */
 @keyframes link-unhover {
   0% {
     transform: translate(-50%, -50%) scale(1.5);
@@ -69,20 +87,7 @@
   }
 }
 .link-unhovered {
-  animation: link-unhover 0.4s forwards;
-}
-
-@keyframes link-hover-follower {
-  0% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.link-hovered-follower {
-    animation: link-hover-follower 0.3s forwards;
+  animation: link-unhover 0.3s forwards;
 }
 
 .link-unhovered-follower {

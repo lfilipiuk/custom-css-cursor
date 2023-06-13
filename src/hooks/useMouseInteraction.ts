@@ -6,7 +6,7 @@ const useMouseInteraction = () => {
   const [activeState, setActiveState] = useState(true);
   const [linkHovered, setLinkHovered] = useState(false);
   const [linkUnhovered, setLinkUnhovered] = useState(false);
-
+  
   useEffect(() => {
     const moveListener = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -59,36 +59,26 @@ const useMouseInteraction = () => {
       setActiveState(false);
     };
 
-    const mouseoverListener = (e: MouseEvent) => {
+    const elementHoverListener = (e: MouseEvent) => {
       const tagName = (e.target as Element).tagName.toLowerCase();
+      const isLinkOrButton = tagName === 'a' || tagName === 'button';
 
-      if (tagName === 'a' || tagName === 'button') {
-        setLinkHovered(true);
-        setLinkUnhovered(false);
-      }
-    };
-
-    const mouseoutListener = (e: MouseEvent) => {
-      const tagName = (e.target as Element).tagName.toLowerCase();
-
-      if (tagName === 'a' || tagName === 'button') {
-        setLinkHovered(false);
-        setLinkUnhovered(true);
-      }
+      setLinkHovered(isLinkOrButton);
+      setLinkUnhovered(!isLinkOrButton);
     };
 
     window.addEventListener("contextmenu", rightClickListener);
     window.addEventListener("click", clickListener);
     window.addEventListener("mouseout", mouseLeaveListener);
-    window.addEventListener('mouseover', mouseoverListener);
-    window.addEventListener('mouseout', mouseoutListener);
+    window.addEventListener('mouseover', elementHoverListener);
+    window.addEventListener('mouseout', elementHoverListener);
 
     return () => {
       window.removeEventListener("contextmenu", rightClickListener);
       window.removeEventListener("click", clickListener);
       window.removeEventListener("mouseout", mouseLeaveListener);
-      window.removeEventListener('mouseover', mouseoverListener);
-      window.removeEventListener('mouseout', mouseoutListener);
+      window.removeEventListener('mouseover', elementHoverListener);
+      window.removeEventListener('mouseout', elementHoverListener);
     };
   }, []);
 

@@ -1,8 +1,13 @@
 import "./App.css";
 import Mouse from "./components/Mouse";
-import Section from "./components/Section";
+import Section from "./components/ui/Section";
+import Button from "./components/ui/Button";
+import Dot from "./components/ui/Dot";
 
 function App() {
+  const buttonClasses = ["bg-gray-200", "border border-gray-200", ""];
+  const shadesOfGray = ["bg-gray-400", "bg-gray-300", "bg-gray-200"];
+
   return (
     <>
       <Mouse />
@@ -16,29 +21,15 @@ function App() {
         <div className={"bg-gray-50 h-3/5 p-24 flex flex-row items-start"}>
           <Section text={"buttons"}>
             <div
-              className={"flex flex-col gap-4 items-center align-middle justify-center h-full"}
+              className={
+                "flex flex-col gap-4 items-center align-middle justify-center h-full"
+              }
             >
-              <button
-                className={
-                  "cursor-none text-xl rounded-full bg-gray-200 w-4/5 p-2 font-medium"
-                }
-              >
-                Hover over me
-              </button>
-              <button
-                className={
-                  "cursor-none text-xl rounded-full border border-gray-200 w-4/5 p-2 font-medium"
-                }
-              >
-                Hover over me
-              </button>
-              <button
-                className={
-                  "cursor-none text-xl rounded-full w-4/5 p-2 font-medium"
-                }
-              >
-                Hover over me
-              </button>
+              {buttonClasses.map((className, index) => (
+                  <Button className={className} key={index}>
+                    Hover over me
+                  </Button>
+              ))}
             </div>
           </Section>
 
@@ -49,9 +40,9 @@ function App() {
           <Section text={"drag your mouse outside the screen"}>
             <div className={"h-full border-2 border-gray-200 rounded-2xl"}>
               <div className={"p-2 flex gap-1"}>
-                <div className={"w-2 h-2 bg-gray-400 rounded-full"} />
-                <div className={"w-2 h-2 bg-gray-300 rounded-full"} />
-                <div className={"w-2 h-2 bg-gray-200 rounded-full"} />
+                {shadesOfGray.map((shade, index) => (
+                    <Dot className={shade} key={index} />
+                ))}
                 <div className={"ml-3 w-3/5 h-2 bg-gray-300 rounded-full"} />
               </div>
             </div>
