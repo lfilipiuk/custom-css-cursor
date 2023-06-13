@@ -60,14 +60,18 @@ const useMouseInteraction = () => {
     };
 
     const mouseoverListener = (e: MouseEvent) => {
-      if ((e.target as Element).tagName.toLowerCase() === 'a') {
+      const tagName = (e.target as Element).tagName.toLowerCase();
+
+      if (tagName === 'a' || tagName === 'button') {
         setLinkHovered(true);
         setLinkUnhovered(false);
       }
     };
 
     const mouseoutListener = (e: MouseEvent) => {
-      if ((e.target as Element).tagName.toLowerCase() === 'a') {
+      const tagName = (e.target as Element).tagName.toLowerCase();
+
+      if (tagName === 'a' || tagName === 'button') {
         setLinkHovered(false);
         setLinkUnhovered(true);
       }
