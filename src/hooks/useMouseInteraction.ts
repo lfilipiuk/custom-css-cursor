@@ -8,6 +8,7 @@ const useMouseInteraction = () => {
   const [linkUnhovered, setLinkUnhovered] = useState(false);
   
   useEffect(() => {
+
     const moveListener = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setActiveState(true);
@@ -28,6 +29,14 @@ const useMouseInteraction = () => {
         const deltaX = position.x - prevState.x;
         const deltaY = position.y - prevState.y;
 
+        if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
+          // Stop updating when close enough
+          return prevState;
+        }
+
+        // Move towards the cursor
+        //Divide by larger number, i.e. 10 to slow down the movement
+        //Divide by smaller number, i.e. 5 to speed up the movement
         return {
           x: prevState.x + deltaX / 7,
           y: prevState.y + deltaY / 7,
