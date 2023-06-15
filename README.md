@@ -1,7 +1,5 @@
 # Custom CSS Cursor
 
-[click here to test](https://mouse.lukaszfilipiuk.com/)
-
 Simple component that enhances mouse actions. Attempt to recreate mouse actions seen on [AKENA](https://akena.co/) website. 
 
 ## Features
